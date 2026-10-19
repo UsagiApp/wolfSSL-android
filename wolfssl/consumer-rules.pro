@@ -1,0 +1,2 @@
+-keep class org.draken.wolfssl.** { *; }
+-keepclassmembers class org.draken.wolfssl.** { *; }

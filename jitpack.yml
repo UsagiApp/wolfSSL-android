@@ -1,0 +1,6 @@
+jdk:
+  - openjdk17
+before_install:
+  - git submodule update --init --recursive
+install:
+  - ./gradlew :wolfssl:publishToMavenLocal

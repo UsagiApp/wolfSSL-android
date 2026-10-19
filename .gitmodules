@@ -1,0 +1,3 @@
+[submodule "wolfssl/src/main/jni/wolfssl"]
+	path = wolfssl/src/main/jni/wolfssl
+	url = https://github.com/wolfSSL/wolfssl.git
