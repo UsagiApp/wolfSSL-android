@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.github.UsagiApp'
-version = System.getenv("LIB_VERSION") ?: '1.0.0'
+version = System.getenv("LIB_VERSION") ?: '1.0.1'
 
 android {
     namespace 'org.draken.wolfssl'
@@ -22,7 +22,7 @@ android {
         }
         externalNativeBuild {
             cmake {
-                arguments "-DANDROID_STL=c++_static"
+                arguments "-DANDROID_STL=c++_static", "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-z,max-page-size=16384"
             }
         }
     }
@@ -52,7 +52,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.UsagiApp'
                 artifactId = 'wolfssl'
-                version = System.getenv("LIB_VERSION") ?: '1.0.0'
+                version = System.getenv("LIB_VERSION") ?: '1.0.1'
             }
         }
         repositories {

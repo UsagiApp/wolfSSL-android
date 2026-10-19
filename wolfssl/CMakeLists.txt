@@ -79,3 +79,4 @@ endif()
 
 find_library(log-lib log)
 target_link_libraries(wolfssl ${log-lib})
+target_link_options(wolfssl PRIVATE "-Wl,-z,max-page-size=16384")
