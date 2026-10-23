@@ -22,7 +22,7 @@ Lightweight, modern **wolfSSL (C library)** wrapper for Android with native TLS 
 
 	```groovy
  	dependencies {
- 		implementation("com.github.UsagiApp:wolfSSL-android:wolfssl:$version")
+ 		implementation("com.github.UsagiApp:wolfSSL-android:$version")
  	}
  	```
 
@@ -31,28 +31,18 @@ Lightweight, modern **wolfSSL (C library)** wrapper for Android with native TLS 
 1. Register Security Provider (Optional)
 
     ```kotlin
-    import org.draken.wolfssl.WolfSSLProvider
-    import java.security.Security
-
     WolfSSLProvider.install()
     ```
 
 2. Use with OkHttp
 
     ```kotlin
-    import okhttp3.OkHttpClient
-    import org.draken.wolfssl.WolfSSLSocketFactory
-    import java.security.KeyStore
-    import javax.net.ssl.TrustManagerFactory
-    import javax.net.ssl.X509TrustManager
-
-    val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm()).apply {
+    val trustFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm()).apply {
         init(null as KeyStore?)
     }
-    val trustManager = trustManagerFactory.trustManagers.first { it is X509TrustManager } as X509TrustManager
-
+    
+    val trustManager = trustFactory.trustManagers.first { it is X509TrustManager } as X509TrustManager
     val sslSocketFactory = WolfSSLSocketFactory(trustManager)
-
     val client = OkHttpClient.Builder()
         .sslSocketFactory(sslSocketFactory, trustManager)
         .build()
